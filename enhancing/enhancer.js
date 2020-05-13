@@ -7,7 +7,7 @@ module.exports = {
 
 function succeed(item) {
   if(item.name === "" || item.enhancement === undefined || item.durability === undefined){
-    throw new Error("One or more  entries are missing ")
+    throw new Error("One or more entries are missing ")
   }
 
   if(item.enhancement < 20){
@@ -18,7 +18,7 @@ function succeed(item) {
 
 function fail(item) {
   if(item.name === "" || item.enhancement === undefined || item.durability === undefined){
-    throw new Error("One or more  entries are missing ")
+    throw new Error("One or more entries are missing ")
   }
   
   if(item.enhancement <= 5){
@@ -36,7 +36,7 @@ function fail(item) {
 
 function repair(item) {
   if(item.name === "" || item.enhancement === undefined || item.durability === undefined){
-    throw new Error("One or more  entries are missing ")
+    throw new Error("One or more entries are missing ")
   }
 
   if(typeof item.name !== "string"){
@@ -49,6 +49,15 @@ function repair(item) {
 }
 
 function get(item) {
+  if(item.name === "" || item.enhancement === undefined || item.durability === undefined){
+    throw new Error("One or more entries are missing ")
+  }
+  if(item.enhancement > 20){
+    throw new Error("Enhancment may not be above 20")
+  }
+  if(item.enhancement > 0){
+    item.name = `[+${item.enhancement}] ${item.name}`
+  }
   return { ...item };
 }
 
